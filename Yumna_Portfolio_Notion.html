@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yumna Khan – PM Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #FAFAF8;
+    --text: #1A1A1A;
+    --muted: #6B6B6B;
+    --accent: #1D4ED8;
+    --accent-light: #EFF4FF;
+    --border: #E5E5E0;
+    --tag-bg: #F0F0EB;
+    --card: #FFFFFF;
+    --divider: #D4D4C8;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 15px; line-height: 1.7; }
+
+  .container { max-width: 780px; margin: 0 auto; padding: 0 32px; }
+
+  /* NAV */
+  nav { border-bottom: 1px solid var(--border); padding: 18px 0; position: sticky; top: 0; background: var(--bg); z-index: 100; }
+  nav .inner { display: flex; justify-content: space-between; align-items: center; max-width: 780px; margin: 0 auto; padding: 0 32px; }
+  nav .logo { font-family: 'DM Serif Display', serif; font-size: 17px; letter-spacing: -0.3px; }
+  nav .links { display: flex; gap: 28px; }
+  nav .links a { text-decoration: none; color: var(--muted); font-size: 13px; font-weight: 500; letter-spacing: 0.3px; transition: color 0.2s; }
+  nav .links a:hover { color: var(--text); }
+
+  /* HERO */
+  .hero { padding: 72px 0 56px; }
+  .hero .eyebrow { font-size: 12px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--accent); margin-bottom: 16px; }
+  .hero h1 { font-family: 'DM Serif Display', serif; font-size: 52px; line-height: 1.1; letter-spacing: -1px; margin-bottom: 20px; }
+  .hero h1 em { font-style: italic; color: var(--accent); }
+  .hero .subtitle { font-size: 16px; color: var(--muted); max-width: 520px; line-height: 1.7; margin-bottom: 32px; font-weight: 300; }
+  .hero .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 36px; }
+  .hero .tags span { background: var(--tag-bg); color: var(--text); font-size: 12px; font-weight: 500; padding: 5px 12px; border-radius: 100px; letter-spacing: 0.2px; }
+  .hero .cta { display: inline-flex; align-items: center; gap: 8px; background: var(--accent); color: white; text-decoration: none; padding: 11px 22px; border-radius: 6px; font-size: 13px; font-weight: 600; letter-spacing: 0.3px; }
+
+  /* DIVIDER */
+  hr { border: none; border-top: 1px solid var(--divider); margin: 48px 0; }
+
+  /* SECTION */
+  .section-label { font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); margin-bottom: 28px; }
+
+  /* ABOUT */
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+  .about-text p { color: var(--muted); font-size: 15px; line-height: 1.8; margin-bottom: 16px; font-weight: 300; }
+  .about-text p strong { color: var(--text); font-weight: 600; }
+  .stats { display: flex; flex-direction: column; gap: 20px; }
+  .stat { border-left: 2px solid var(--accent); padding-left: 16px; }
+  .stat .num { font-family: 'DM Serif Display', serif; font-size: 28px; color: var(--text); line-height: 1; margin-bottom: 4px; }
+  .stat .label { font-size: 12px; color: var(--muted); font-weight: 400; }
+
+  /* CASE STUDIES */
+  .case-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 36px; margin-bottom: 24px; }
+  .case-card .case-tag { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--accent); margin-bottom: 12px; }
+  .case-card h2 { font-family: 'DM Serif Display', serif; font-size: 26px; letter-spacing: -0.5px; margin-bottom: 8px; line-height: 1.2; }
+  .case-card .case-sub { font-size: 14px; color: var(--muted); margin-bottom: 24px; font-weight: 300; }
+  .case-card .meta { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 28px; }
+  .case-card .meta span { background: var(--tag-bg); font-size: 12px; padding: 4px 10px; border-radius: 4px; font-weight: 500; }
+
+  .block { margin-bottom: 28px; }
+  .block-title { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--accent); margin-bottom: 10px; border-bottom: 1px solid var(--accent-light); padding-bottom: 6px; }
+  .block p { font-size: 14px; color: var(--muted); line-height: 1.75; font-weight: 300; }
+  .block p strong { color: var(--text); font-weight: 600; }
+
+  ul.pm-list { list-style: none; padding: 0; }
+  ul.pm-list li { font-size: 14px; color: var(--muted); padding: 6px 0 6px 18px; position: relative; line-height: 1.6; font-weight: 300; border-bottom: 1px solid var(--tag-bg); }
+  ul.pm-list li:last-child { border-bottom: none; }
+  ul.pm-list li::before { content: "→"; position: absolute; left: 0; color: var(--accent); font-size: 12px; top: 8px; }
+
+  .impact-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .impact-box { background: var(--accent-light); border-radius: 8px; padding: 16px; text-align: center; }
+  .impact-box .num { font-family: 'DM Serif Display', serif; font-size: 22px; color: var(--accent); margin-bottom: 4px; }
+  .impact-box .desc { font-size: 11px; color: var(--muted); font-weight: 500; line-height: 1.4; }
+
+  .learning-box { background: var(--tag-bg); border-radius: 8px; padding: 18px 20px; font-size: 14px; color: var(--muted); font-style: italic; font-weight: 300; line-height: 1.7; border-left: 3px solid var(--accent); }
+
+  /* SKILLS */
+  .skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .skill-block { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 20px; }
+  .skill-block .skill-cat { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--accent); margin-bottom: 12px; }
+  .skill-block .skill-pills { display: flex; flex-wrap: wrap; gap: 6px; }
+  .skill-block .skill-pills span { background: var(--tag-bg); font-size: 12px; padding: 4px 10px; border-radius: 100px; font-weight: 500; color: var(--text); }
+
+  /* CONTACT */
+  .contact-box { background: var(--text); color: white; border-radius: 12px; padding: 40px; text-align: center; }
+  .contact-box h3 { font-family: 'DM Serif Display', serif; font-size: 28px; margin-bottom: 10px; letter-spacing: -0.5px; }
+  .contact-box p { color: #aaa; font-size: 14px; margin-bottom: 24px; font-weight: 300; }
+  .contact-box a { display: inline-block; background: white; color: var(--text); text-decoration: none; padding: 10px 24px; border-radius: 6px; font-size: 13px; font-weight: 600; margin: 4px; }
+
+  /* NOTION GUIDE */
+  .notion-guide { background: #FFFBEB; border: 1px solid #FDE68A; border-radius: 10px; padding: 24px 28px; margin-top: 48px; }
+  .notion-guide h4 { font-size: 13px; font-weight: 700; color: #92400E; margin-bottom: 14px; letter-spacing: 0.5px; }
+  .notion-guide ol { padding-left: 18px; }
+  .notion-guide ol li { font-size: 13px; color: #78350F; margin-bottom: 8px; line-height: 1.6; }
+  .notion-guide code { background: #FEF3C7; padding: 2px 6px; border-radius: 3px; font-size: 12px; font-family: monospace; }
+
+  footer { padding: 40px 0; text-align: center; color: var(--muted); font-size: 12px; border-top: 1px solid var(--border); margin-top: 64px; }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="inner">
+    <div class="logo">Yumna Khan</div>
+    <div class="links">
+      <a href="#about">About</a>
+      <a href="#work">Case Studies</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+
+  <!-- HERO -->
+  <section class="hero" id="top">
+    <div class="eyebrow">Product Manager Portfolio</div>
+    <h1>Building products<br>that <em>matter</em> to<br>real people.</h1>
+    <p class="subtitle">Software Engineer turned Product Manager. 3 years shipping digital products for 15M+ users. Passionate about financial inclusion, user-first thinking, and the intersection of technology and human behavior.</p>
+    <div class="tags">
+      <span>📍 Mumbai</span>
+      <span>🏦 Fintech & Insurtech</span>
+      <span>📱 Mobile Products</span>
+      <span>📊 Data-Driven PM</span>
+    </div>
+    <a href="#work" class="cta">View Case Studies ↓</a>
+  </section>
+
+  <hr id="about">
+
+  <!-- ABOUT -->
+  <section style="margin-bottom: 56px;">
+    <div class="section-label">About Me</div>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>I'm a <strong>product-focused Software Engineer</strong> at ICICI Lombard, where I've spent 3 years building mobile-first insurance products used by millions of everyday Indians.</p>
+        <p>My work sits at the crossroads of engineering and product — I've defined requirements, run competitive analysis, tracked user drop-offs, and co-owned launches. I don't just build products. I ask <strong>why we're building them</strong>.</p>
+        <p>I'm now making the deliberate transition into Product Management, where I can fully own the <strong>strategy, roadmap, and impact</strong> of the products I care about.</p>
+      </div>
+      <div class="stats">
+        <div class="stat">
+          <div class="num">15M+</div>
+          <div class="label">Users on products I helped ship</div>
+        </div>
+        <div class="stat">
+          <div class="num">3 yrs</div>
+          <div class="label">Cross-functional product experience</div>
+        </div>
+        <div class="stat">
+          <div class="num">3</div>
+          <div class="label">Platforms: Mobile, Web, M-View</div>
+        </div>
+        <div class="stat">
+          <div class="num">2025</div>
+          <div class="label">One IL One Digital Award</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr id="work">
+
+  <!-- CASE STUDIES -->
+  <section style="margin-bottom: 56px;">
+    <div class="section-label">Case Studies</div>
+
+    <!-- CASE STUDY 1: FINPILOT -->
+    <div class="case-card">
+      <div class="case-tag">Case Study 01 — Personal Project</div>
+      <h2>FinPilot – Predictive Financial Guardrails</h2>
+      <p class="case-sub">A fintech product concept that uses calendar signals and spending data to help users make smarter financial decisions before they overspend.</p>
+      <div class="meta">
+        <span>🏦 Fintech</span>
+        <span>📱 Mobile App</span>
+        <span>👤 Solo PM Work</span>
+        <span>🔍 0→1 Product</span>
+      </div>
+
+      <div class="block">
+        <div class="block-title">The Problem</div>
+        <p>Most budgeting apps tell users what went wrong <strong>after they've already overspent</strong>. There is no product that proactively warns users about upcoming high-spend periods — rent cycles, festive seasons, travel — before the damage is done. Users don't need more dashboards. They need a <strong>financial early warning system</strong>.</p>
+      </div>
+
+      <div class="block">
+        <div class="block-title">User Research & Personas</div>
+        <ul class="pm-list">
+          <li><strong>The Reactive Spender</strong> — Earns well, but consistently surprised by month-end balance. Wants warnings, not reports.</li>
+          <li><strong>The First-Time Earner</strong> — Young professional, no financial habits formed. Needs guardrails, not complexity.</li>
+          <li><strong>The Planner</strong> — Has goals but struggles to connect daily decisions to long-term outcomes.</li>
+        </ul>
+      </div>
+
+      <div class="block">
+        <div class="block-title">The Solution</div>
+        <p>FinPilot syncs with a user's <strong>calendar and spending history</strong> to predict upcoming financial pressure points. It sends proactive nudges like: <em>"Your rent is due in 5 days and you've spent 80% of this month's discretionary budget."</em> Key features include a <strong>Spend Forecast Timeline</strong>, Smart Calendar Alerts, and a Financial Health Score that updates in real time.</p>
+      </div>
+
+      <div class="block">
+        <div class="block-title">Prioritisation & Tradeoffs</div>
+        <ul class="pm-list">
+          <li>Prioritised proactive nudges over retrospective dashboards — insight before damage</li>
+          <li>Chose calendar integration over bank statement parsing for faster onboarding</li>
+          <li>Deferred social/community features to v2 — focus on solo utility first</li>
+          <li>Kept onboarding to under 3 steps to reduce drop-off at signup</li>
+        </ul>
+      </div>
+
+      <div class="block">
+        <div class="block-title">Competitive Landscape</div>
+        <p>Benchmarked against <strong>Walnut, CRED, Jupiter, and Groww</strong>. Key gap identified: all competitors are <strong>reactive by design</strong> — they show you what happened. FinPilot's differentiator is prediction, not reporting. No direct competitor in India occupies this proactive-guardrail space.</p>
+      </div>
+
+      <div class="block">
+        <div class="block-title">Success Metrics</div>
+        <ul class="pm-list">
+          <li>% of users who acted on a nudge before overspending (target: 40% within 30 days)</li>
+          <li>Reduction in month-end budget overrun vs baseline</li>
+          <li>D7 and D30 retention — stickiness of proactive nudge habit</li>
+          <li>NPS and qualitative feedback on "financial confidence" post-use</li>
+        </ul>
+      </div>
+
+      <div class="block">
+        <div class="block-title">Key Learnings</div>
+        <div class="learning-box">"The biggest insight was that users don't want more data — they want less anxiety. FinPilot's job isn't to inform, it's to reduce the cognitive load of managing money. That reframe changed every product decision I made."</div>
+      </div>
+    </div>
+
+    <!-- CASE STUDY 2: TRIPSECURE -->
+    <div class="case-card">
+      <div class="case-tag">Case Study 02 — ICICI Lombard</div>
+      <h2>TripSecure – End-to-End Digital Claim Journey</h2>
+      <p class="case-sub">Designed and launched a seamless digital claim intimation experience for TripSecure travel insurance across mobile, web, and M-view platforms.</p>
+      <div class="meta">
+        <span>🛡️ Insurtech</span>
+        <span>📱 Mobile + Web</span>
+        <span>👥 Cross-functional</span>
+        <span>🚀 0→1 Launch</span>
+      </div>
+
+      <div class="block">
+        <div class="block-title">The Problem</div>
+        <p>When TripSecure policyholders faced an emergency abroad — a medical issue, trip cancellation, or lost baggage — the <strong>claim filing process was entirely offline</strong>. Users had to call a helpline, wait on hold, and navigate a manual process during an already stressful moment. This led to high drop-offs, poor NPS scores at the claim stage, and significant ops overhead for the support team.</p>
+      </div>
+
+      <div class="block">
+        <div class="block-title">My Role</div>
+        <ul class="pm-list">
+          <li>Collaborated with PMs to define functional requirements and feature specifications</li>
+          <li>Worked directly with designers on user journey flows and UI components</li>
+          <li>Coordinated with QA teams across 3 platforms: Mobile (Flutter), Web, and M-View</li>
+          <li>Implemented Firebase Analytics to track user behavior and identify drop-off points</li>
+          <li>Contributed to release planning and end-to-end launch execution</li>
+        </ul>
+      </div>
+
+      <div class="block">
+        <div class="block-title">The Solution</div>
+        <p>A <strong>fully digital, self-serve claim intimation journey</strong> built across all three platforms. Users could now initiate a claim in under 5 minutes — upload documents, select claim type, track status — all without calling support. The journey was designed for <strong>high-stress, low-patience users</strong> in unfamiliar environments, prioritising clarity and speed above everything else.</p>
+      </div>
+
+      <div class="block">
+        <div class="block-title">Key Product Decisions</div>
+        <ul class="pm-list">
+          <li>Designed for <strong>one-handed mobile use</strong> — most claims initiated mid-travel on phones</li>
+          <li>Progressive disclosure — showed only what was needed at each step, not the full form upfront</li>
+          <li>Offline-tolerant design — auto-saved progress for users with poor connectivity abroad</li>
+          <li>Localised copy — plain language over insurance jargon at every touchpoint</li>
+        </ul>
+      </div>
+
+      <div class="block">
+        <div class="block-title">Impact</div>
+        <div class="impact-grid">
+          <div class="impact-box">
+            <div class="num">3</div>
+            <div class="desc">Platforms launched simultaneously</div>
+          </div>
+          <div class="impact-box">
+            <div class="num">↓</div>
+            <div class="desc">Drop-off identified & reduced via Firebase</div>
+          </div>
+          <div class="impact-box">
+            <div class="num">🏆</div>
+            <div class="desc">One IL One Digital Award 2025</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="block">
+        <div class="block-title">Key Learnings</div>
+        <div class="learning-box">"Launching across three platforms simultaneously taught me that consistency of experience matters more than feature parity. Users don't care which platform they're on — they care that it works. That perspective now shapes how I think about every product decision."</div>
+      </div>
+    </div>
+  </section>
+
+  <hr id="skills">
+
+  <!-- SKILLS -->
+  <section style="margin-bottom: 56px;">
+    <div class="section-label">Skills & Tools</div>
+    <div class="skills-grid">
+      <div class="skill-block">
+        <div class="skill-cat">Product</div>
+        <div class="skill-pills">
+          <span>Product Strategy</span><span>Roadmapping</span><span>User Research</span><span>Feature Prioritisation</span><span>Competitive Analysis</span><span>User Journey Mapping</span><span>Requirement Docs</span>
+        </div>
+      </div>
+      <div class="skill-block">
+        <div class="skill-cat">Tools</div>
+        <div class="skill-pills">
+          <span>Jira</span><span>Confluence</span><span>Figma</span><span>Firebase Analytics</span><span>Postman</span><span>Google Sheets</span><span>Git</span>
+        </div>
+      </div>
+      <div class="skill-block">
+        <div class="skill-cat">Technical</div>
+        <div class="skill-pills">
+          <span>Flutter</span><span>Dart</span><span>REST APIs</span><span>SQL</span><span>Python</span>
+        </div>
+      </div>
+      <div class="skill-block">
+        <div class="skill-cat">Soft Skills</div>
+        <div class="skill-pills">
+          <span>Cross-functional Collaboration</span><span>Stakeholder Communication</span><span>Data-Driven Decisions</span><span>Problem Framing</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr id="contact">
+
+  <!-- CONTACT -->
+  <section style="margin-bottom: 24px;">
+    <div class="contact-box">
+      <h3>Let's build something together.</h3>
+      <p>Open to APM and PM roles. Based in Mumbai. Available for conversations.</p>
+      <a href="mailto:yumnakhan2611@gmail.com">✉️ Email Me</a>
+      <a href="#">🔗 LinkedIn</a>
+      <a href="#">📄 Resume</a>
+    </div>
+  </section>
+
+  <!-- NOTION SETUP GUIDE -->
+  <div class="notion-guide">
+    <h4>📋 HOW TO SET THIS UP IN NOTION</h4>
+    <ol>
+      <li>Create a new <strong>Notion page</strong> — set it to <code>Full width</code> in the top-right settings (•••)</li>
+      <li><strong>Page 1 — Home:</strong> Add your name, one-liner, tags, and a cover image. Use a <code>/callout</code> block for your intro pitch.</li>
+      <li><strong>Page 2 — About Me:</strong> Use a <code>/2 columns</code> layout. Left: your story paragraphs. Right: 4 stat blocks using <code>/callout</code> with emoji icons.</li>
+      <li><strong>Page 3 — Case Study: FinPilot:</strong> Create a sub-page. Use <code>/toggle</code> blocks for each section (Problem, Research, Solution, Metrics, Learnings) so it's scannable.</li>
+      <li><strong>Page 4 — Case Study: TripSecure:</strong> Same structure as FinPilot. Add any screenshots or wireframes you have using <code>/image</code>.</li>
+      <li><strong>Page 5 — Skills:</strong> Use a <code>/table</code> or <code>/gallery</code> view. Group by category (Product / Tools / Technical).</li>
+      <li><strong>Page 6 — Contact:</strong> Simple page with your email, LinkedIn link, and Resume PDF embed using <code>/embed</code>.</li>
+      <li>Set your Home page as <strong>public</strong> via Share → Publish to web. This gives you a shareable link to send recruiters.</li>
+      <li>Pro tip: Add a <strong>cover photo</strong> and <strong>icon emoji</strong> to every page — it makes it feel polished and intentional.</li>
+    </ol>
+  </div>
+
+</div>
+
+<footer>
+  Yumna Khan · PM Portfolio · Mumbai · yumnakhan2611@gmail.com
+</footer>
+
+</body>
+</html>
